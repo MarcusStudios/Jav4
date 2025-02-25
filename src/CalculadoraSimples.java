@@ -1,45 +1,55 @@
 import java.util.Scanner;
 
 public class CalculadoraSimples {
-    public static void main(String[] args) throws Exception {
-        double num1;
-        double num2;
-        double result;
-
-        String operator;
+    public static void main(String[] args) {
+        double num1, num2, resultado = 0;
+        String operacao;
 
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter the first number: ");
+        System.out.print("Digite o primeiro número: ");
         num1 = input.nextDouble();
 
-        System.out.print("Enter the operator: ");
-        operator = input.next();
+        System.out.print("Digite o operador (+, -, *, /): ");
+        operacao = input.next();
 
-        System.out.print("Enter the second number: ");
+        System.out.print("Digite o segundo número: ");
         num2 = input.nextDouble();
 
-        switch (operator) { 
+        boolean operacaoValida = true;
+
+        switch (operacao) {
             case "+":
-                result = num1 + num2;
-                System.out.println(num1 + " + " + num2 + " = " + result);
+                resultado = num1 + num2;
+                System.out.println("O resultado da soma de " + num1 + " + " + num2 + " = " + resultado);
                 break;
             case "-":
-                result = num1 - num2;
-                System.out.println(num1 + " - " + num2 + " = " + result);
-                break; 
+                resultado = num1 - num2;
+                System.out.println("O resultado da subtração de " + num1 + " - " + num2 + " = " + resultado);
+                break;
             case "*":
-                result = num1 * num2;    
-                System.out.println(num1 + " * " + num2 + " = " + result);
+                resultado = num1 * num2;
+                System.out.println("O resultado da multiplicação de " + num1 + " * " + num2 + " = " + resultado);
                 break;
             case "/":
-                result = num1 / num2;
-                System.out.println(num1 + " / " + num2 + " = " + result);
+                if (num2 == 0) {
+                    System.out.println("Erro: divisão por zero não é permitida.");
+                    operacaoValida = false;
+                } else {
+                    resultado = num1 / num2;
+                    System.out.println("O resultado da divisão de " + num1 + " / " + num2 + " = " + resultado);
+                }
                 break;
             default:
-                System.out.println("Invalid operator!");
-                break;
+                System.out.println("Operador inválido.");
+                operacaoValida = false;
         }
+
+        // Verifica se o resultado é par apenas se a operação for válida
+        if (operacaoValida && resultado >= 10000000) {
+            System.out.println("O resultado é par.");
+        }
+
         input.close();
     }
 }
