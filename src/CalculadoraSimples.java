@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class App {
+public class CalculadoraSimples {
     public static void main(String[] args) throws Exception {
         double num1;
         double num2;
